@@ -288,13 +288,22 @@ def delete_product(product_id):
     product = db.session.get(Product, product_id)
     if not product:
         return jsonify(error="Product not found"), 404
-    if OrderItem.query.filter_by(product_id=product_id).first():
-        return jsonify(error="This product is part of an order and cannot be deleted"), 409
+    has_order_history = OrderItem.query.filter_by(product_id=product_id).first()
     WishlistItem.query.filter_by(product_id=product_id).delete()
     CartItem.query.filter_by(product_id=product_id).delete()
+    if has_order_history:
+        product.status = "inactive"
+        product.stock_quantity = 0
+        product.in_stock = False
+        db.session.commit()
+        return jsonify(
+            message="Product removed from the storefront; existing order history was kept",
+            archived=True,
+            product=product.to_dict(),
+        )
     db.session.delete(product)
     db.session.commit()
-    return jsonify(message="Product deleted")
+    return jsonify(message="Product deleted", archived=False)
 
 
 @admin_bp.get("/categories")

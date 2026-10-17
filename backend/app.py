@@ -116,8 +116,8 @@ def create_app():
         if bool(admin_email) != bool(admin_password):
             raise RuntimeError("Set both ADMIN_EMAIL and ADMIN_PASSWORD to configure an admin")
         if admin_email:
-            if len(admin_password) < 12:
-                raise RuntimeError("ADMIN_PASSWORD must be at least 12 characters")
+            if len(admin_password) < 8:
+                raise RuntimeError("ADMIN_PASSWORD must be at least 8 characters")
             admin_email = admin_email.strip().lower()
             if not re.fullmatch(r"[^@\s]+@[^@\s]+\.[^@\s]+", admin_email):
                 raise RuntimeError("ADMIN_EMAIL must be a valid email address")

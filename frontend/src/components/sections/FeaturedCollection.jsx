@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 
 function FeaturedCollection() {
   return (
-    <section className="px-4 py-14 sm:px-6 md:px-10 lg:px-16">
-      <div className="relative flex min-h-[420px] items-center justify-center overflow-hidden bg-[#2b211b] sm:min-h-[520px] md:min-h-[600px]">
+    <section className="px-3 py-8 sm:px-6 md:px-10 lg:px-16">
+      <div className="relative flex min-h-[300px] items-center justify-center overflow-hidden bg-[#2b211b] sm:min-h-[360px] md:min-h-[420px] lg:min-h-[600px]">
         <img
           src="/images/hero1.jpg"
           alt="A considered edit of versatile wardrobe essentials"
@@ -12,7 +12,7 @@ function FeaturedCollection() {
         />
         <div className="absolute inset-0 bg-[#2b211b]/45" />
         
-        <div className="relative z-10 px-5 py-12 text-center text-white sm:px-6">
+        <div className="relative z-10 px-4 py-8 text-center text-white sm:px-6">
           <p className="mb-4 text-[10px] uppercase tracking-[0.24em] text-white/80">
             The ZELIA point of view
           </p>

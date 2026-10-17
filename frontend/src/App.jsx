@@ -21,6 +21,7 @@ import Sale from './pages/Sale'
 import InformationPage from './pages/InformationPage'
 import AdminRoutes from './admin/routes/AdminRoutes.jsx'
 import { useProducts } from './context/ProductsContext'
+import WhatsAppButton from './components/WhatsAppButton'
 
 function AppRoutes() {
   const location = useLocation()
@@ -76,6 +77,7 @@ function AppRoutes() {
 
       </Routes>
       {!isAdminRoute && <Footer />}
+      <WhatsAppButton />
     </>
   )
 }

@@ -20,10 +20,17 @@
     text-rendering: optimizeLegibility;
   }
 
+  html,
   body {
     margin: 0;
     background: #f6f0e8;
     color: #2b211b;
+    overflow-x: hidden;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
   }
 
   button,

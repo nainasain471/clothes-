@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom'
 
 function ShopMen() {
   return (
-    <section className="bg-white px-4 py-8 sm:px-6 md:px-10 lg:px-16">
-      <div className="grid grid-cols-1 md:min-h-[550px] md:grid-cols-2">
+    <section className="bg-white px-3 py-6 sm:px-6 md:px-10 lg:px-16">
+      <div className="grid grid-cols-1 gap-3 lg:min-h-[550px] lg:grid-cols-2">
 
-        <div className="relative min-h-[360px] overflow-hidden bg-white sm:min-h-[440px] md:min-h-[550px]">
+        <div className="relative min-h-[280px] overflow-hidden bg-white sm:min-h-[340px] lg:min-h-[550px]">
           <Link
             to="/product/2"
             aria-label="View Relaxed Fit Shirt"
@@ -19,7 +19,7 @@ function ShopMen() {
           </Link>
         </div>
 
-        <div className="relative min-h-[360px] overflow-hidden bg-white sm:min-h-[440px] md:min-h-[550px]">
+        <div className="relative min-h-[300px] overflow-hidden bg-white sm:min-h-[360px] lg:min-h-[550px]">
           <Link
             to="/product/1"
             aria-label="View Essential Cotton T-Shirt"

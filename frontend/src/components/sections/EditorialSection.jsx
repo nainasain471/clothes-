@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom'
 
 function EditorialSection() {
   return (
-    <section className="px-4 py-10 sm:px-6 md:px-10 lg:px-16">
-      <div className="grid items-center bg-[#f6f0e8] md:min-h-[500px] md:grid-cols-2">
-        <div className="px-5 py-12 text-center sm:px-8 sm:py-16 md:px-12 md:text-left lg:px-20">
+    <section className="px-3 py-8 sm:px-6 md:px-10 lg:px-16">
+      <div className="grid items-center gap-3 bg-[#f6f0e8] lg:min-h-[500px] lg:grid-cols-2">
+        <div className="px-4 py-8 text-center sm:px-8 sm:py-12 md:px-12 md:text-left lg:px-20">
           <p className="mb-4 text-[10px] uppercase tracking-[0.24em] text-[#6f6258]">
             Pieces to live in
           </p>
@@ -26,7 +26,7 @@ function EditorialSection() {
           </Link>
         </div>
 
-        <div className="relative min-h-[320px] overflow-hidden bg-white sm:min-h-[400px] md:min-h-[500px]">
+        <div className="relative min-h-[260px] overflow-hidden bg-white sm:min-h-[360px] lg:min-h-[500px]">
           <img
             src="/images/products/7.jpg"
             alt="A deep green dress from the ZELIA collection"

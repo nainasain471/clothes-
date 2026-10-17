@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom'
 
 function ShopWomen() {
   return (
-    <section className="bg-white px-4 py-8 sm:px-6 md:px-10 lg:px-16">
-      <div className="grid grid-cols-1 md:min-h-[550px] md:grid-cols-2">
+    <section className="bg-white px-3 py-6 sm:px-6 md:px-10 lg:px-16">
+      <div className="grid grid-cols-1 gap-3 lg:min-h-[550px] lg:grid-cols-2">
 
         {/* LEFT SIDE - IMAGE + TEXT */}
-        <div className="relative min-h-[420px] overflow-hidden bg-white sm:min-h-[500px] md:min-h-[550px]">
+        <div className="relative min-h-[300px] overflow-hidden bg-white sm:min-h-[360px] lg:min-h-[550px]">
 
           <Link
             to="/product/5"
@@ -51,7 +51,7 @@ function ShopWomen() {
         </div>
 
         {/* RIGHT SIDE - SECOND IMAGE */}
-        <div className="relative min-h-[360px] overflow-hidden bg-white sm:min-h-[420px] md:min-h-[550px]">
+        <div className="relative min-h-[280px] overflow-hidden bg-white sm:min-h-[340px] lg:min-h-[550px]">
 
           <Link
             to="/product/6"

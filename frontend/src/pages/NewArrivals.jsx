@@ -5,18 +5,19 @@ import { useProducts } from '../context/ProductsContext'
 function NewArrivals() {
   const { collection } = useParams()
   const { products } = useProducts()
+  const newestProducts = [...products].sort((first, second) => second.id - first.id)
   const collections = {
     men: {
       title: "Men's New Arrivals",
-      products: products.filter((product) => product.gender === 'men'),
+      products: newestProducts.filter((product) => product.gender === 'men'),
     },
     women: {
       title: "Women's New Arrivals",
-      products: products.filter((product) => product.gender === 'women'),
+      products: newestProducts.filter((product) => product.gender === 'women'),
     },
     denim: {
       title: 'Denim',
-      products: products.filter(
+      products: newestProducts.filter(
         (product) =>
           product.gender === 'men' &&
           (product.category === 'jeans' ||
@@ -27,7 +28,7 @@ function NewArrivals() {
   const activeCollection = collections[collection]
   const page = activeCollection ?? {
     title: 'New Arrivals',
-    products: products.slice(0, 8),
+    products: newestProducts.slice(0, 8),
   }
 
   return (

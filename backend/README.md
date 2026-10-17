@@ -16,6 +16,14 @@ Guest carts stay in the customer's browser until they sign in. On sign-in, the
 guest cart is merged into their saved account cart. Payment card details are
 not collected or stored; checkout currently supports Cash on Delivery.
 
+## Local administrator setup
+
+There are no default administrator credentials. Copy `.env.example` to `.env`
+in the backend folder, replace the example admin email and password, then start
+the backend from that folder. `ADMIN_PASSWORD` must contain at least 8
+characters. The configured administrator is created or updated when Flask
+starts; never commit `.env` or share its contents.
+
 Back up the SQLite database file before replacing or moving it. For production,
 configure a strong `SECRET_KEY` and `JWT_SECRET_KEY` and use a managed database
 with routine backups.

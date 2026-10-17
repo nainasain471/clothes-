@@ -65,7 +65,7 @@ function HeroSection() {
 
   return (
     <section
-      className="relative h-[min(78vh,560px)] min-h-[480px] w-full overflow-hidden bg-[#f6f0e8] sm:h-[620px] sm:min-h-0 md:h-[min(78vh,850px)] md:min-h-[620px]"
+      className="relative h-[56svh] min-h-[300px] w-full overflow-hidden bg-[#f6f0e8] sm:h-[62svh] sm:min-h-[360px] md:h-[68vh] md:min-h-[420px] lg:h-[78vh] lg:min-h-[620px]"
       onTouchStart={(event) => setTouchStart(event.touches[0].clientX)}
       onTouchEnd={handleTouchEnd}
     >
@@ -107,18 +107,18 @@ function HeroSection() {
                   {slide.subtitle}
                 </p>
 
-                <h1 className="max-w-xl font-serif text-4xl font-normal leading-[1.04] tracking-[-0.03em] min-[380px]:text-5xl sm:text-6xl md:text-7xl">
+                <h1 className="max-w-xl font-serif text-[2.2rem] font-normal leading-[1.02] tracking-[-0.03em] min-[380px]:text-5xl sm:text-6xl md:text-7xl">
                   {slide.title}
                 </h1>
 
-                <p className="mt-4 max-w-md text-sm leading-6 text-white/90 sm:mt-6 sm:leading-7 md:text-base">
+                <p className="mt-3 max-w-md text-xs leading-5 text-white/90 sm:mt-6 sm:text-sm sm:leading-7 md:text-base">
                   {slide.text}
                 </p>
 
                 <Link
                   to={slide.link}
                   tabIndex={index === current ? 0 : -1}
-                  className="mt-6 inline-block border border-[#6b4f3a] bg-[#6b4f3a] px-6 py-3.5 text-[10px] font-medium uppercase tracking-[0.18em] text-white transition-colors hover:border-[#b98b67] hover:bg-[#b98b67] hover:text-white sm:mt-8 sm:px-7 sm:py-4"
+                  className="mt-5 inline-block border border-[#6b4f3a] bg-[#6b4f3a] px-4 py-3 text-[9px] font-medium uppercase tracking-[0.18em] text-white transition-colors hover:border-[#b98b67] hover:bg-[#b98b67] hover:text-white sm:mt-8 sm:px-7 sm:py-4 sm:text-[10px]"
                 >
                   {slide.buttonText}
                 </Link>

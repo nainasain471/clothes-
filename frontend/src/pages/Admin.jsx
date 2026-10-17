@@ -13,6 +13,8 @@ const orderStatuses = [
   'cancelled',
   'returned',
 ]
+const orderStatusLabel = (status) =>
+  status === 'placed' ? 'Pending' : `${status[0].toUpperCase()}${status.slice(1)}`
 const tabs = [
   ['overview', 'Overview'],
   ['products', 'Products'],
@@ -219,13 +221,18 @@ function Admin() {
   }
 
   const handleDeleteProduct = async (product) => {
-    if (!window.confirm(`Delete "${product.name}"? This cannot be undone.`)) return
+    if (!window.confirm(`Remove "${product.name}" from the storefront? Existing order history will be kept.`)) return
     setError('')
     setNotice('')
     try {
-      await apiRequest(`/admin/products/${product.id}`, { method: 'DELETE' })
-      setProducts((current) => current.filter((item) => item.id !== product.id))
-      setNotice('Product deleted.')
+      const result = await apiRequest(`/admin/products/${product.id}`, { method: 'DELETE' })
+      if (result.archived) {
+        setProducts((current) => current.map((item) => item.id === product.id ? result.product : item))
+        setNotice('Product removed from the storefront. Existing order history was kept.')
+      } else {
+        setProducts((current) => current.filter((item) => item.id !== product.id))
+        setNotice('Product deleted.')
+      }
       await fetchDashboard()
       reloadStoreProducts()
     } catch (requestError) {
@@ -436,7 +443,7 @@ function Admin() {
                     {recentOrders.length ? recentOrders.map((order) => (
                       <article className="overview-row" key={order.id}>
                         <div><strong>Order #{order.id}</strong><small>{order.customer.name} · {order.customer.email}</small></div>
-                        <span className={`status-pill ${order.status}`}>{order.status}</span>
+                        <span className={`status-pill ${order.status}`}>{orderStatusLabel(order.status)}</span>
                         <strong>{money.format(order.total)}</strong>
                       </article>
                     )) : <p className="empty-state">No orders have been placed yet.</p>}
@@ -533,7 +540,7 @@ function Admin() {
               <section className="content-panel">
                 <div className="section-head"><div><h2>Orders</h2><p>COD is the only payment method currently supported.</p></div></div>
                 <div className="order-filters">
-                  <label><span>Status</span><select value={orderStatusFilter} onChange={(event) => { setOrderStatusFilter(event.target.value); setPage(1) }}><option value="all">All statuses</option>{orderStatuses.map((status) => <option key={status} value={status}>{status}</option>)}</select></label>
+                  <label><span>Status</span><select value={orderStatusFilter} onChange={(event) => { setOrderStatusFilter(event.target.value); setPage(1) }}><option value="all">All statuses</option>{orderStatuses.map((status) => <option key={status} value={status}>{orderStatusLabel(status)}</option>)}</select></label>
                   <label><span>From</span><input type="date" value={orderFrom} onChange={(event) => { setOrderFrom(event.target.value); setPage(1) }} /></label>
                   <label><span>To</span><input type="date" value={orderTo} onChange={(event) => { setOrderTo(event.target.value); setPage(1) }} /></label>
                 </div>
@@ -542,7 +549,7 @@ function Admin() {
                     <article key={order.id} className="order-card">
                       <div className="order-meta-row">
                         <div><h3>Order #{order.id}</h3><p>{order.customer?.name} · {order.customer?.email} · {order.createdAt ? new Date(order.createdAt).toLocaleString() : ''}</p></div>
-                        <div className="order-status-wrap"><span className={`status-pill ${order.status}`}>{order.status}</span><select aria-label={`Update order ${order.id} status`} value={order.status} onChange={(event) => handleOrderStatus(order.id, event.target.value)}>{orderStatuses.map((status) => <option key={status} value={status}>{status}</option>)}</select></div>
+                        <div className="order-status-wrap"><span className={`status-pill ${order.status}`}>{orderStatusLabel(order.status)}</span><select aria-label={`Update order ${order.id} status`} value={order.status} onChange={(event) => handleOrderStatus(order.id, event.target.value)}>{orderStatuses.map((status) => <option key={status} value={status}>{orderStatusLabel(status)}</option>)}</select></div>
                       </div>
                       <div className="order-body">
                         <div className="order-address"><strong>{money.format(order.total)}</strong><br /><span>{order.paymentMethod} · Payment {order.paymentStatus}</span><br /><span>{order.shippingAddress?.firstName} {order.shippingAddress?.lastName}, {order.shippingAddress?.address}, {order.shippingAddress?.city}, {order.shippingAddress?.state} {order.shippingAddress?.pincode}</span></div>
@@ -578,7 +585,7 @@ function Admin() {
                     <h3>Saved addresses</h3>
                     {customerDetail.savedAddresses.length ? customerDetail.savedAddresses.map((address) => <p key={address.id}>{address.firstName} {address.lastName} · {address.phone} · {address.address}, {address.city}, {address.state} {address.pincode}</p>) : <p>No saved addresses.</p>}
                     <h3>Order history</h3>
-                    {customerDetail.orderHistory.length ? customerDetail.orderHistory.map((order) => <p key={order.id}>Order #{order.id} · {order.status} · {money.format(order.total)} · {new Date(order.createdAt).toLocaleDateString()}</p>) : <p>This customer has not placed an order.</p>}
+                    {customerDetail.orderHistory.length ? customerDetail.orderHistory.map((order) => <p key={order.id}>Order #{order.id} · {orderStatusLabel(order.status)} · {money.format(order.total)} · {new Date(order.createdAt).toLocaleDateString()}</p>) : <p>This customer has not placed an order.</p>}
                   </section>
                 )}
               </section>

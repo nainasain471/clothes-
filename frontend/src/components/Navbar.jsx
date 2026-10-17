@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 import { useWishlist } from '../context/WishlistContext'
-import { useAuth } from '../context/AuthContext'
 import { getCollectionGender } from '../utils/collectionRoutes'
 import ProductImage from './products/ProductImage'
 
@@ -136,7 +135,6 @@ function Navbar() {
 
   const { cartCount } = useCart()
   const { wishlistCount } = useWishlist()
-  const { user } = useAuth()
 
   const closeAll = () => {
     setActiveMenu(null)
@@ -215,16 +213,6 @@ function Navbar() {
 
         {/* Right Icons */}
         <div className="flex items-center gap-3 sm:gap-5">
-
-          {user?.role === 'admin' && (
-            <Link
-              to="/admin"
-              onClick={closeAll}
-              className="text-[10px] font-medium tracking-[0.12em] text-[#6b4f3a] hover:text-[#b98b67]"
-            >
-              ADMIN
-            </Link>
-          )}
 
           <Link
             to={searchPath}

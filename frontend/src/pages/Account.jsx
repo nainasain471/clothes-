@@ -122,7 +122,7 @@ function Account() {
               <article key={order.id} className="border border-gray-200 bg-white p-5">
                 <div className="flex flex-wrap justify-between gap-2 text-sm">
                   <p>Order #{order.id}</p>
-                  <p className="capitalize">{order.status} · ₹{order.total.toLocaleString('en-IN')}</p>
+                  <p className="capitalize">{order.status === 'placed' ? 'Pending' : order.status} · ₹{order.total.toLocaleString('en-IN')}</p>
                 </div>
                 <ul className="mt-3 space-y-1 text-sm text-gray-500">
                   {order.items.map((item) => (

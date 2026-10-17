@@ -14,7 +14,7 @@ function NewArrivals() {
             New this week
           </p>
 
-          <h2 className="text-4xl font-normal tracking-tight text-[#2b211b] md:text-5xl">
+          <h2 className="text-3xl font-normal tracking-tight text-[#2b211b] sm:text-4xl md:text-5xl">
             Fresh perspective
           </h2>
         </div>

@@ -91,7 +91,7 @@ function Wishlist() {
       </div>
 
       {/* Wishlist Products */}
-      <div className="grid grid-cols-2 gap-x-3 gap-y-8 px-3 pb-12 min-[380px]:gap-x-4 min-[380px]:px-4 sm:gap-y-10 sm:px-6 sm:pb-20 md:grid-cols-4 md:px-10 lg:px-16">
+      <div className="grid grid-cols-2 gap-x-3 gap-y-8 px-3 pb-12 min-[380px]:gap-x-4 min-[380px]:px-4 sm:gap-y-10 sm:px-6 sm:pb-20 md:grid-cols-3 md:px-10 xl:grid-cols-4 lg:px-16">
 
         {wishlistItems.map((product) => (
           <div key={product.id} className="group min-w-0 bg-white p-2 min-[380px]:p-3">
